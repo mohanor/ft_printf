@@ -6,7 +6,7 @@
 /*   By: matef <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 10:53:43 by matef             #+#    #+#             */
-/*   Updated: 2021/12/01 10:53:44 by matef            ###   ########.fr       */
+/*   Updated: 2021/12/02 20:23:29 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void	ft_putnbr_unsigned(unsigned long nbr, int *len)
 {
-	char	*base_x;
+	char	*base;
 
-	base_x = "0123456789";
-    if (nbr < 10)
-    {
-        *len += ft_putchar(base_x[nbr]);
-    }
-    else{
-        ft_putnbr_unsigned(nbr / 10 , len);
-        ft_putnbr_unsigned(nbr % 10 , len);
-    }
+	base = "0123456789";
+	if (nbr < 10)
+	{
+		*len += ft_putchar(base[nbr]);
+	}
+	else
+	{
+		ft_putnbr_unsigned(nbr / 10, len);
+		ft_putnbr_unsigned(nbr % 10, len);
+	}
 }

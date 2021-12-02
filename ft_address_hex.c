@@ -17,20 +17,21 @@ static void	ft_putnbr_hex(unsigned long nbr, int *len)
 	char	*base;
 
 	base = "0123456789abcdef";
-    if (nbr < 16)
-        *len += ft_putchar(base[nbr]);
-    else{
-        ft_putnbr_hex(nbr / 16 , len);
-        ft_putnbr_hex(nbr % 16 , len);
-    }
+	if (nbr < 16)
+		*len += ft_putchar(base[nbr]);
+	else
+	{
+		ft_putnbr_hex(nbr / 16, len);
+		ft_putnbr_hex(nbr % 16, len);
+	}
 }
 
 void	ft_address_hex(void *p0, int *len)
 {
-	int			i;
-	uintptr_t	p;
+	int				i;
+	unsigned long	p;
 
-	p = (uintptr_t)p0;
+	p = (unsigned long)p0;
 	*len += ft_putchar('0');
 	*len += ft_putchar('x');
 	ft_putnbr_hex(p, len);

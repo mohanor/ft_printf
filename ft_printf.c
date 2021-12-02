@@ -12,14 +12,15 @@
 
 #include "ft_printf.h"
 
-static int ft_char_in(char c)
+static int	ft_char_in(char c)
 {
-	return (c == 'd' || c == 'u' || c == 'c' || c == 's' || c == 'x' || c == 'X' || c == 'i' || c == 'p');
+	return (c == 'd' || c == 'u' || c == 'c' || c == 's' || c == 'x'
+		|| c == 'X' || c == 'i' || c == 'p');
 }
 
-static void ft_conversions(char c, va_list	arguments, int *len)
+static void	ft_conversions(char c, va_list arguments, int *len)
 {
-	if (c == 'd')
+	if (c == 'd' || c == 'i')
 		ft_putnbr(va_arg(arguments, int), len);
 	if (c == 'u')
 		ft_putnbr_unsigned(va_arg(arguments, unsigned int), len);
@@ -29,15 +30,13 @@ static void ft_conversions(char c, va_list	arguments, int *len)
 		ft_putstr(va_arg(arguments, char *), len);
 	if (c == 'x' || c == 'X')
 		ft_put_x(va_arg(arguments, unsigned int), c, len);
-	if (c == 'i')
-		ft_putnbr_base(va_arg(arguments, int), "0123456789", len);
 	if (c == 'p')
 		ft_address_hex(va_arg(arguments, int *), len);
 }
 
 static void	ft_put(const char *str, va_list	arguments, int *len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -64,7 +63,10 @@ int	ft_printf(const char *str, ...)
 	va_list	arguments;
 	char	*ptr;
 	int		len;
+
 	len = 0;
+	if (!*str)
+		return (0);
 	va_start (arguments, str);
 	ft_put(str, arguments, &len);
 	va_end (arguments);
